@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<style>
+.card {
+  display: inline-block;
+  line-height: 30px;
+  width: 50px;
+  text-align: center;
+  background-color: steelblue;
+  color: #fff;
+  border-radius: 4px;
+  margin: 3px;
+}
+
+.card {
+  max-width: 360px;
+}
+</style>
+<script>
+	var grid = $('#grid');
+
+for (var i = 1; i <= 9; i++) {
+  grid.append('<div class="card">' + i + '</div>');
+}
+
+$(".btn_shuffle").click(function() {
+  var cardNumbers = [];
+  
+  $('.card').each(function() {
+    cardNumbers.push(this.innerHTML);
+  });
+  
+  var theLength = cardNumbers.length - 1;
+  var toSwap;
+  var temp;
+  
+  for (var i = theLength; i > 0; i--) {
+    toSwap = Math.floor(Math.random() * (i + 1));
+    temp = cardNumbers[i];
+    cardNumbers[i] = cardNumbers[toSwap];
+    cardNumbers[toSwap] = temp;
+  }
+  
+  i = 0;
+  
+  $('.card').each(function() {
+    this.innerHTML = cardNumbers[i];
+    i++;
+  });
+});
+
+$(".btn_sort").click(function() {
+  var cardNumbers = [];
+  
+  $('.card').each(function() {
+    cardNumbers.push(+this.innerHTML);
+  });
+  
+  cardNumbers.sort();
+  
+  i = 0;
+  
+  $('.card').each(function() {
+    this.innerHTML = cardNumbers[i];
+    i++;
+  });
+});
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<button class="btn_shuffle" id="shuffle">Shuffle</button>
+<button class="btn_sort">Sort</button>
+<div id="grid"></div>
+    <div class="card">1</div>
+    <div class="card">2</div>
+    <div class="card">3</div>
+    <div class="card">4</div>
+    <div class="card">5</div>
+    <div class="card">6</div>
+    <div class="card">7</div>
+    <div class="card">8</div>
+    <div class="card">9</div>
+</div>
+</body>
+</html>
